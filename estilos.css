@@ -1,0 +1,31 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(138, 133, 133);
+    text-align: center;
+}
+
+form{
+    background-color: aqua;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 40px;
+    text-align: center;
+    width: 400px;
+    margin-left: 33%;
+}
+
+input[type=number]{
+    height: 24px;
+}
+
+input[type=text]:valid{
+    background-color: cadetblue;
+}
+
+input[type=number]:valid{
+    background-color: cadetblue;
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+}
