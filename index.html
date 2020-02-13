@@ -1,72 +1,37 @@
-<!DOCTYPE html>
+>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bienvenidos a Programacion</title>
-    <link rel="estilos" href="estilos.css">
-</head>
+    <title>Bienvenido a Programacion IV</title>
+    <link rel="stylesheet" href="estilos.css">
+</head> 
 <body>
-
-    <h1>Bienvenidos a Programacion IV</h1>
-
-    <form action="post" name="Estudiante">
-
-        <h2>Estudiante</h2>
-
-        <label for="nombre">Nombre Completo: </label><input pattern="[a-zA-ZnÑ]{3,75}" required type="text" name="nombre" id="nombre" placeholder="Nombre...">
-        
-        <br><br>
-
-        <label for="edad">Edad: </label><input required min="0" type="number" name="edad" placeholder="Edad...">
-        
-        <br><br>
-
-        <input type="file" name="" id="" accept="image/*">
-
-        <br><br>
-
-        <label>Sexo: </label>
-        <input type="radio" name="genero" id="Femenino"><label for="genero">Femenino</label>
-        <input type="radio" name="genero" id="Genero"><label for="genero">Masculino</label>
-        
-        <br><br>
-
-        <label for="curso">Curso: </label>
-        <input pattern="[a-zA-ZnÑ]{3,75}" required type="text" name="curso" placeholder="Curso...">
-
-        <br><br>
-
-        <input type="submit" value="Aceptar">
+    <h1>APP ALUMNOS OFFLINE</h1>
+    <form name="frmAlumnos" id="frmAlumnos" method="get">
+        <div class="container">
+            <div class="fila">
+                <input type="text" id="txtCodigoAlumno" 
+                    required="required" placeholder="codigo" pattern="^[A-Z]{4}[0-9]{6}">
+            </div>
+            <div class="fila">
+                <input type="text" id="txtNombreAlumno" required="required" 
+                    placeholder="Nombre" pattern="[a-zA-ZñÑ ]{3,65}">
+            </div>
+            <div class="fila">
+                <input type="text" id="txtDireccionAlumno" required="required" placeholder="Direccion" >
+            </div>
+            <div class="fila">
+                <input type="text" id="txtTelefonoAlumno" required="required" 
+                    placeholder="Telefono" pattern="[0-9]{4}-[0-9]{4}">
+            </div>
+            <div class="fila">
+                <input type="submit" value="Guardar">
+                <input type="button" id="btnRecuperarAlumno" value="Recuperar">
+            </div>
+        </div>
     </form>
-
-    <form action="post" id="Docente">
-        <h2>Docente</h2>
-
-        <label for="nombre">Nombre Completo: </label><input pattern="[a-zA-ZnÑ]{3,75}" required type="text" name="nombre" id="nombre" placeholder="Nombre...">
-        
-        <br><br>
-
-        <input type="file" name="" id="" accept="image/*">
-
-        <br><br>
-
-        <label for="edad">Edad: </label><input required type="number" min="0" name="edad" placeholder="Edad..."> 
-        
-        <br><br>
-        <label>Sexo: </label> 
-        <input type="radio" name="genero" id="Femenino"><label for="genero">Femenino</label>
-        <input type="radio" name="genero" id="Genero"><label for="genero">Masculino</label>
-        
-        <br><br>
-
-        <label for="cedula">Cedula: </label>
-        <input pattern="[a-zA-ZnÑ]{3,75}" required type="text" name="cedula" placeholder="Cedula...">
-
-        <br><br>
-        
-        <input type="submit" value="Aceptar">   
-    </form>
+    <script src="app.js"></script>
 </body>
 </html>
