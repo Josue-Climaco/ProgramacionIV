@@ -10,7 +10,7 @@
 <body>
 <div class="group">
   <form action="registro.php" method="POST">
-  <h2><em>Formulario de Registro</em></h2>  
+  <h2><em>Registro de estudiantes</em></h2>  
      
       <label for="nombre">Nombre <span><em>(requerido)</em></span></label>
       <input type="text" name="nombre" class="form-input" required/>   
@@ -18,25 +18,22 @@
       <label for="apellido">Apellido <span><em>(requerido)</em></span></label>
       <input type="text" name="apellido" class="form-input" required/>         
       
+      <label for="edad">Edad <span><em>(requerido)</em></span></label>
+      <input type="text" name="edad" class="form-input" required /> <br><br>
+
       <label for="email">Email <span><em>(requerido)</em></span></label>
-      <input type="email" name="email" class="form-input" />
-     <center> <input class="form-btn" name="submit" type="submit" value="Suscribirse" /></center>
-    </p>
+      <input type="email" name="email" class="form-input" required /> <br><br>
+
+      <label for="telefono">Telefono <span><em>(requerido)</em></span></label>
+      <input type="text" name="telefono" class="form-input" required /> <br><br>
+
+     <center> <input class="form-btn" name="submit" type="submit" value="Reguistrase"/>
   </form>
-</div>
 </body>
 </html>
 1
 2
 3
-4
-5
-6
-7
-8
-9
-
-27
 <!doctype html>
 <html>
 <head>
@@ -48,19 +45,24 @@
 <body>
 <div class="group">
   <form action="registro.php" method="POST">
-  <h2><em>Formulario de Registro</em></h2>  
+  <h2><em>Registro Docente</em></h2>  
      
       <label for="nombre">Nombre <span><em>(requerido)</em></span></label>
-      <input type="text" name="nombre" class="form-input" required/>   
+      <input type="text" name="nombre" class="form-input" required/> <br><br>
       
       <label for="apellido">Apellido <span><em>(requerido)</em></span></label>
-      <input type="text" name="apellido" class="form-input" required/>         
+      <input type="text" name="apellido" class="form-input" required/> <br><br>      
       
+      <label for="profecion">Profeción <span><em>(requerido)</em></span></label>
+      <input type="tex" name="profecion" class="form-input" required/> <br><br>
+
       <label for="email">Email <span><em>(requerido)</em></span></label>
-      <input type="email" name="email" class="form-input" />
-     <center> <input class="form-btn" name="submit" type="submit" value="Suscribirse" /></center>
-    </p>
+      <input type="email" name="email" class="form-input" required /> <br><br>
+
+      <label for="telefono">Telefono <span><em>(requerido)</em></span></label>
+      <input type="text" name="telefono" class="form-input" required /> <br><br>
+
+     <center> <input class="form-btn" name="submit" type="submit" value="Reguistrase"/>
   </form>
-</div>
 </body>
 </html>
