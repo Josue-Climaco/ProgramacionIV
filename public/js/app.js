@@ -1,32 +1,28 @@
-var $ = el =>document.querySelector(el);
-document.addEventListener("DOMContentLoaded", event=>{
-    let mostrarVista = document.getElementsByName('opciones'); 
-
-    
-    mostrarVista.forEach(element => {   
-        element.addEventListener('click', e=>{
+function init() {
+    var $ = el => {
+        return el.match(/^#/) ? document.querySelector(el) : document.querySelectorAll(el);
+    };
+    var mostrarVista = $("[class*='mostrar']");
+    mostrarVista.forEach(element => {
+        element.addEventListener('click', e => {
             e.stopPropagation();
-            let modulo = e.toElement.dataset.modulo;
-         verVistas(modulo);
-        });
-    });
-});
 
-function verVistas(modulo) {
-    let ruta;
-    if(modulo=='alumnos'){
-        ruta = 'public/vistas/alumnos/alumnos.html';
-    }else{
-        ruta = 'public/vistas/docentes/docentes.html';
-    }
-    fetch(ruta).then(resp => resp.text()).then(resp => {
-        $(`#vistas-${modulo}`).innerHTML = resp;
-        let btnCerrar = $(".close");
-        btnCerrar.addEventListener("click", event => {
-            $(`#vistas-${modulo}`).innerHTML = "";
+            let modulo = e.srcElement.dataset.modulo,
+                form = e.srcElement.dataset.form;
+            fetch(`public/vistas/${modulo}/${form}.html`).then(resp => resp.text()).then(resp => {
+                
+                $(`#vistas-${form}`).innerHTML = resp;
+
+                let btnCerrar = $(`#btn-close-${form}`);
+                btnCerrar.addEventListener("click", event => {
+                    $(`#vistas-${form}`).innerHTML = "";
+                });
+                import(`../vistas/${modulo}/${form}.js`).then(module => {
+                    module.modulo();
+                });
+                init();
+            });
         });
-        let cuerpo = $("body"), script = document.createElement("script");
-        script.src = `public/vistas/${modulo}/${modulo}.js`;
-        cuerpo.appendChild(script);
     });
 }
+init();
