@@ -1,60 +1,38 @@
-export function modulo() {
-    var $ = el => document.querySelector(el),
-        frmBuscarAlumnos = $("#txtBuscarAlumno");
-    frmBuscarAlumnos.addEventListener('keyup', e => {
-        traerDatos(frmBuscarAlumnos.value);
-    });
-    let modificarAlumno = (alumno) => {
-        $("#frm-alumnos").dataset.accion = 'modificar';
-        $("#frm-alumnos").dataset.idalumno = alumno.idAlumno;
-        $("#txtCodigoAlumno").value = alumno.codigo;
-        $("#txtNombreAlumno").value = alumno.nombre;
-        $("#txtDireccionAlumno").value = alumno.direccion;
-        $("#txtTelefonoAlumno").value = alumno.telefono;
-    };
-    let eliminarAlumno = (idAlumno) => {
-        let dialog = document
-        dialog
-        dialog.showModal(
+var appBuscarAlumnos = new Vue({
+    el: '#frm-buscar-alumnos',
+    data: {
+        misalumnos: [],
+        valor: ''
+    },
+    methods: {
+        buscarAlumno: function () {
+                fetch(`private/modulos/alumnos/procesos.php?proceso=buscarAlumno&alumno=${this.valor}`).then(resp => resp.json()).then(resp => {
+                    this.misalumnos = resp;
+                });
+        },
+        modificarAlumno: function (alumno) {
+            appalumno.alumno = alumno;
+            appalumno.alumno.accion = 'modificar';
+        },
+        eliminarAlumno: function (idAlumno) {
+            let dialog = document.getElementById("dialogAlumno");
+            dialog.close();
+            dialog.showModal();
 
-        document.getElementById("btnCancelar").addEventListener( 
-            dialog
-        }
-
-        document.getElementById("btnConfirmar").addEventListener('click', event=>{
-            fetch(`private/modulos/alumnos/procesos.php?proceso=eliminarAlumno&alumno=${idAlumno}`).then(resp => resp.json()).then(resp => {
-                traerDatos('');
+            $(`#btnCancelarAlumno`).click(e => {
                 dialog.close();
             });
-        })
-    };
 
-    let traerDatos = (valor) => {
-        fetch(`private/modulos/alumnos/procesos.php?proceso=buscarAlumno&alumno=${valor}`).then(resp => resp.json()).then(resp => {
-            //console.log(resp);
-            let filas = '';
-            resp.forEach(alumno => {
-                filas += `
-                    <tr data-idalumno='${alumno.idAlumno}' data-alumno='${JSON.stringify(alumno)}'>
-                        <td>${alumno.codigo}</td>
-                        <td>${alumno.nombre}</td>
-                        <td>${alumno.direccion}</td>
-                        <td>${alumno.telefono}</td>
-                        <td>
-                            <input type="button" class="btn btn-outline-danger text-white" value="del">
-                        </td>
-                    </tr>
-                `;
+            $(`#btnConfirmarAlumno`).click(e => {
+                 fetch(`private/modulos/alumnos/procesos.php?proceso=eliminarAlumno&alumno=${idAlumno}`).then(resp => resp.json()).then(resp => {
+                     this.buscarAlumno();
+                 });
+                dialog.close();
             });
-            $("#tbl-buscar-alumnos > tbody").innerHTML = filas;
-            $("#tbl-buscar-alumnos > tbody").addEventListener("click", e => {
-                if (e.srcElement.parentNode.dataset.alumno == null) {
-                    eliminarAlumno(e.srcElement.parentNode.parentNode.dataset.idalumno);
-                } else {
-                    modificarAlumno(JSON.parse(e.srcElement.parentNode.dataset.alumno));
-                }
-            });
-        });
-    };
-    traerDatos('');
+           
+        }
+    },
+created: function () {
+this.buscarAlumno();
 }
+});

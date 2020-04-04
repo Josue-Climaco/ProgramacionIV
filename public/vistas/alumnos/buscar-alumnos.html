@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th colspan="8">
-                            <input type="text" id="txtBuscarAlumno" placeholder="codigo o nombre" class="form-control">
+                            <input type="text" v-model="valor" v-on:keyup="buscarAlumno" placeholder="codigo o nombre" class="form-control">
                         </th>
                     </tr>
                     <tr>
@@ -24,23 +24,34 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                     <tr v-for="estudiante in misalumnos" :key="estudiante.idAlumno"
+                         v-on:click="modificarAlumno(estudiante)">
+                         <td>{{ estudiante.codigo }}</td>
+                         <td>{{ estudiante.nombre }}</td>
+                         <td>{{ estudiante.direccion }}</td>
+                         <td>{{ estudiante.telefono }}</td>
+                         <td>
+                             <input v-on:click="eliminarAlumno(estudiante.idAlumno)" type="button"
+                                 class="btn btn-outline-danger text-white" value="del">
+                         </td>
+                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <dialog class="border-10 rounded bg-dark text-white border-primary" id="diaConfirmacion">
+    <dialog class="border-10 rounded bg-dark text-white border-primary" id="dialogAlumno">
         <p>Esta seguro de eliminar el registro?</p>
 
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-sm">
-                    <input class="btn btn-primary" type="button" id="btnConfirmar" Value="Aceptar">
+                    <input class="btn btn-primary" type="button" id="btnConfirmarAlumno" Value="Aceptar">
                 </div>
                 <div class="col-sm">
-                    <input class="btn btn-danger" type="button" id="btnCancelar" Value="Cancelar">
+                    <input class="btn btn-danger" type="button" id="btnCancelarAlumno" Value="Cancelar">
                 </div>
             </div>
         </div>
     </dialog>
 </form>
+<script src="public/vistas/alumnos/buscar-alumnos.js"></script>
